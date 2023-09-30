@@ -3,6 +3,12 @@ window.addEventListener('load', () => {
   const input = document.querySelector("#new-task-input");
   const list_el = document.querySelector("#tasks");
 
+  // Get the ".tasks" and "completed-tasks" divs.
+const tasksDiv = document.querySelector(".tasks");
+const completedTasksDiv = document.querySelector(".completed-tasks");
+
+
+  // Add Task
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -71,4 +77,27 @@ window.addEventListener('load', () => {
 
 
   });
+
+  // Add an event listener to the ".complete" button.
+tasksDiv.querySelectorAll(".complete").forEach((button) => {
+  button.addEventListener("click", () => {
+    // Get the task element that the button belongs to.
+    const taskEl = button.closest(".task");
+
+    // Check if the task is complete.
+    if (!taskEl.querySelector(".text").value.includes("(complete)")) {
+
+      // Get the user's confirmation.
+      const confirmation = confirm("Are you sure this task is completed?");
+
+      // If the user confirms, move the task to the "completed-tasks" div.
+      if (confirmation) {
+        completedTasksDiv.appendChild(taskEl);
+      
+      }
+    }
+  });
+});
+
+
 });

@@ -87,7 +87,7 @@ input, button {
   margin-bottom: 1rem;
 }
 
-#tasks .task {
+.task {
   display: flex;
   justify-content: space-between;
   background-color: var(--darkest);
@@ -96,11 +96,11 @@ input, button {
   margin: 0.5rem 1rem 0.5rem 1rem;
 }
 
-#tasks .task .content {
+.task .content {
   flex: 1 1 0%;
 }
 
-#tasks .task .content .text {
+.task .content .text {
   color: var(--light);
   font-size: 1.125rem;
   width: 100%;
@@ -108,12 +108,12 @@ input, button {
   transition: 0.4s;
 }
 
-#tasks .task .content .text:not(:read-only
+.task .content .text:not(:read-only
 ) {
   color: var(--pink);
 }
 
-#tasks .task .actions {
+.task .actions {
   display: flex;
   margin: 0 -0.5rem;
 }

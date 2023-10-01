@@ -1,12 +1,11 @@
 window.addEventListener('load', () => {
-  const form = document.querySelector("#new-task-form");
-  const input = document.querySelector("#new-task-input");
-  const list_el = document.querySelector("#tasks");
+  const form = document.querySelector('#new-task-form');
+  const input = document.querySelector('#new-task-input');
+  const list_el = document.querySelector('#tasks');
 
   // Get the ".tasks" and "completed-tasks" divs.
-const tasksDiv = document.querySelector(".tasks");
-const completedTasksDiv = document.querySelector(".completed-tasks");
-
+  const tasksDiv = document.querySelector('.tasks');
+  const completedTasksDiv = document.querySelector('.completed-tasks');
 
   // Add Task
   form.addEventListener('submit', (e) => {
@@ -15,89 +14,75 @@ const completedTasksDiv = document.querySelector(".completed-tasks");
     const task = input.value;
 
     if (!task) {
-      alert("Please set a task");
+      alert('Please set a task');
       return;
     }
 
-    const task_el = document.createElement("div");
-    task_el.classList.add("task");
-    
-    const task_content_el = document.createElement("div");
-    task_content_el.classList.add("content");
+    const task_el = document.createElement('div');
+    task_el.classList.add('task');
+
+    const task_content_el = document.createElement('div');
+    task_content_el.classList.add('content');
 
     task_el.appendChild(task_content_el);
 
-    const task_input_el = document.createElement("input");
-    task_input_el.classList.add("text");
-    task_input_el.type = "text";
-    task_input_el.value = "task";
-    task_input_el.setAttribute("readonly", "readonly");
+    const task_input_el = document.createElement('input');
+    task_input_el.classList.add('text');
+    task_input_el.type = 'text';
+    task_input_el.value = task;
+    task_input_el.setAttribute('readonly', 'readonly');
 
     task_content_el.appendChild(task_input_el);
 
-    const task_actions_el = document.createElement("div");
-    task_actions_el.classList.add("actions");
+    const task_actions_el = document.createElement('div');
+    task_actions_el.classList.add('actions');
 
-    const task_edit_el = document.createElement("button");
-    task_edit_el.classList.add("edit");
-    task_edit_el.innerHTML = "Edit";
+    const task_edit_el = document.createElement('button');
+    task_edit_el.classList.add('edit');
+    task_edit_el.innerHTML = 'Edit';
 
-    const task_delete_el = document.createElement("button");
-    task_delete_el.classList.add("delete");
-    task_delete_el.innerHTML = "Delete";
+    const task_delete_el = document.createElement('button');
+    task_delete_el.classList.add('delete');
+    task_delete_el.innerHTML = 'Delete';
 
-    const task_complete_el = document.createElement("button");
-    task_complete_el.classList.add("complete");
-    task_complete_el.innerHTML = "Complete";
+    const task_complete_el = document.createElement('button');
+    task_complete_el.classList.add('complete');
+    task_complete_el.innerHTML = 'Complete';
 
     task_actions_el.appendChild(task_edit_el);
     task_actions_el.appendChild(task_delete_el);
     task_actions_el.appendChild(task_complete_el);
-    
-    task_el.appendChild(task_actions_el)
+
+    task_el.appendChild(task_actions_el);
 
     list_el.appendChild(task_el);
 
-    input.value = "";
+    input.value = '';
 
-    task_edit_el.addEventListener(`click`, () => {
+    task_edit_el.addEventListener('click', () => {
       if (task_input_el.readOnly) {
-        task_input_el.removeAttribute("readonly");
+        task_input_el.removeAttribute('readonly');
         task_input_el.focus();
-        task_edit_el.innerText = "Save"
-       } else {
-          task_input_el.setAttribute("readonly", "readonly");
-          task_edit_el.innerText = "Edit";
-       }
+        task_edit_el.innerText = 'Save';
+      } else {
+        task_input_el.setAttribute('readonly', 'readonly');
+        task_edit_el.innerText = 'Edit';
+      }
     });
 
-      task_delete_el.addEventListener(`click`, () => {
-        list_el.removeChild(task_el);
-      });
-
-
+    task_delete_el.addEventListener('click', () => {
+      list_el.removeChild(task_el);
+    });
   });
 
-  // Add an event listener to the ".complete" button.
-tasksDiv.querySelectorAll(".complete").forEach((button) => {
-  button.addEventListener("click", () => {
-    // Get the task element that the button belongs to.
-    const taskEl = button.closest(".task");
+  // Add an event listener to the ".delete" button.
+  tasksDiv.querySelectorAll('.delete').forEach((button) => {
+    button.addEventListener('click', () => {
+      // Get the task element that the button belongs to.
+      const taskEl = button.closest('.task');
 
-    // Check if the task is complete.
-    if (!taskEl.querySelector(".text").value.includes("(complete)")) {
-
-      // Get the user's confirmation.
-      const confirmation = confirm("Are you sure this task is completed?");
-
-      // If the user confirms, move the task to the "completed-tasks" div.
-      if (confirmation) {
-        completedTasksDiv.appendChild(taskEl);
-      
-      }
-    }
+      // Remove the task from the list.
+      list_el.removeChild(taskEl);
+    });
   });
-});
-
-
 });

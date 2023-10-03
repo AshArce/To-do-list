@@ -128,10 +128,10 @@ input, button {
 }
 
 .task .actions button:hover{
-  opacity: 0.8;
+  opacity: 0.9;
 }
 .task .actions button:active{
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .task .actions .edit {
@@ -146,4 +146,8 @@ input, button {
 
 .task .actions .complete {
   color: limegreen;
+}
+
+.completed-tasks .task .content .text {
+  color: rgb(50, 109, 50);
 }

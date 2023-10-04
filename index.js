@@ -4,8 +4,7 @@ window.addEventListener('load', () => {
   const list_el = document.querySelector('#tasks');
 
   const completedTasksDiv = document.querySelector('.completed-tasks');
-  // Get all task divs in the completed tasks list.
-  
+
 
   // Add Task
   form.addEventListener('submit', (e) => {
@@ -76,15 +75,28 @@ window.addEventListener('load', () => {
       
       });
 
-       // Add event listener to the ".complete" button.
-       task_complete_el.addEventListener('click', () => {
-  
-        // Remove the task from the to-do list.
-        list_el.removeChild(task_el);
-  
-        // Add the task to the completed tasks list.
-        completedTasksDiv.appendChild(task_el);
-      });
+      task_complete_el.addEventListener('click', () => {
+        // Ask for confirmation
+        const confirmComplete = window.confirm('Are you sure this task is complete?');
+    
+        if (confirmComplete) {
+            // Remove the "Edit" and "Complete" buttons from the task element.
+            task_actions_el.removeChild(task_edit_el);
+            task_actions_el.removeChild(task_complete_el);
+    
+            // Remove the task from the to-do list.
+            list_el.removeChild(task_el);
+    
+            // Add the task to the completed tasks list.
+            completedTasksDiv.appendChild(task_el);
+    
+            // Add event listener to the "Delete" button in completed tasks.
+            const task_delete_completed_el = task_el.querySelector('.delete');
+            task_delete_completed_el.addEventListener('click', () => {
+                completedTasksDiv.removeChild(task_el);
+            });
+        }
+    });
 
       
 
@@ -92,3 +104,4 @@ window.addEventListener('load', () => {
 
   
 });
+
